@@ -1,4 +1,3 @@
-# coding: utf-8
 import pandas as pd
 import glob
 import cv2
@@ -74,7 +73,7 @@ for i in range(len(score)):
     print('%s: %.3f' % (names[i], score[i]))
 
 # Save model
-model.save_weights('model.h5', overwrite=True)
-with open('model.json', 'w') as outfile:
+model.save_weights(config.__model_file__, overwrite=True)
+with open(config.__model_file__, 'w') as outfile:
     json.dump(model.to_json(), outfile)
-plot(model, 'model.png', show_shapes=True)
+plot(model, config.__model_diagram__, show_shapes=True)
