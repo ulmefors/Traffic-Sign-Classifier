@@ -1,0 +1,47 @@
+# coding: utf-8
+import pandas as pd
+import glob
+import cv2
+import json
+import numpy as np
+import keras
+from keras.models import model_from_json
+from keras.utils import np_utils
+from keras.optimizers import Adam
+import config
+
+# Fix error with Keras and TensorFlow
+import tensorflow as tf
+tf.python.control_flow_ops = tf
+
+# Load images and save in X matrix. Convert to numpy array.
+X = []
+for file in glob.glob('images/train/sign*.png'):
+    img = cv2.imread(file)
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    X.append(img)
+X = np.array(X)
+
+# Load labels
+y = pd.read_csv('train_labels.csv', header=None).values
+y_cat = np_utils.to_categorical(y, config.__nb_classes__)
+
+# Load model
+model_file = 'model.json'
+with open(model_file, 'r') as jfile:
+    if keras.__version__ >= '1.2.0':
+        model = model_from_json(json.loads(jfile.read()))
+    else:
+        model = model_from_json(jfile.read())
+
+# Compile model and load weights
+model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
+weights_file = model_file.replace('json', 'h5')
+model.load_weights(weights_file)
+
+# Evaluate model performace
+print('Evaluating performance on %d samples' % X.shape[0])
+score = model.evaluate(X, y_cat, verbose=0)
+names = model.metrics_names
+for i in range(len(score)):
+    print('%s: %.3f' % (names[i], score[i]))
