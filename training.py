@@ -45,7 +45,7 @@ y_val = np_utils.to_categorical(y_val, nb_classes)
 
 # Model of Convolutional Neural Network
 model = Sequential()
-model.add(Lambda(lambda x : x / 255.0 - 0.5, input_shape=shape, output_shape=shape))
+model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=shape, output_shape=shape))
 model.add(Conv2D(3, 1, 1, activation='elu'))
 model.add(Conv2D(16, 5, 5, subsample=(2, 2), activation='elu'))
 model.add(Conv2D(24, 3, 3, activation='elu'))
@@ -73,7 +73,7 @@ for i in range(len(score)):
     print('%s: %.3f' % (names[i], score[i]))
 
 # Save model
-model.save_weights(config.__model_file__, overwrite=True)
+model.save_weights(config.__model_weights__, overwrite=True)
 with open(config.__model_file__, 'w') as outfile:
     json.dump(model.to_json(), outfile)
 plot(model, config.__model_diagram__, show_shapes=True)
