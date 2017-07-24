@@ -31,7 +31,7 @@ with open(model_file, 'r') as jfile:
 
 # Compile model and load weights
 model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
-model.load_weights(config.__model_weigths__)
+model.load_weights(config.__model_weights__)
 
 # Evaluate model performace
 print('Evaluating performance on %d samples' % X.shape[0])
