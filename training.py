@@ -10,10 +10,17 @@ from keras.layers import Dense, Conv2D, Flatten, Lambda, Dropout
 from keras.optimizers import Adam
 from keras.utils.visualize_util import plot
 import config
+import pickle_to_img
+
+
+# Convert pickled data to human readable images
+image_files = 'images/train/sign*.png'
+if len(glob.glob(image_files)) == 0:
+    pickle_to_img.main()
 
 # Load images and save in X matrix. Convert to numpy array.
 X = []
-for file in glob.glob('images/train/sign*.png'):
+for file in glob.glob(image_files):
     img = cv2.imread(file)
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     X.append(img)
