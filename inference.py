@@ -8,10 +8,17 @@ from keras.models import model_from_json
 from keras.utils import np_utils
 from keras.optimizers import Adam
 import config
+import helper
+
+
+# Convert pickled data to human readable images
+image_files = 'images/test/sign*.png'
+if len(glob.glob(image_files)) == 0:
+    helper.extract_images()
 
 # Load images and save in X numpy array
 X = []
-for file in glob.glob('images/test/sign*.png'):
+for file in glob.glob(image_files):
     img = cv2.imread(file)
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     X.append(img)
