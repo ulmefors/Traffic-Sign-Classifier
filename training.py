@@ -10,13 +10,13 @@ from keras.layers import Dense, Conv2D, Flatten, Lambda, Dropout
 from keras.optimizers import Adam
 from keras.utils.visualize_util import plot
 import config
-import pickle_to_img
+import helper
 
 
 # Convert pickled data to human readable images
 image_files = 'images/train/sign*.png'
 if len(glob.glob(image_files)) == 0:
-    pickle_to_img.main()
+    helper.extract_images()
 
 # Load images and save in X matrix. Convert to numpy array.
 X = []
