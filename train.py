@@ -1,7 +1,3 @@
-import pandas as pd
-import glob
-import cv2
-import numpy as np
 import json
 from sklearn.model_selection import train_test_split
 from keras.utils import np_utils
@@ -13,21 +9,11 @@ import config
 import helper
 
 
-# Convert pickled data to human readable images
-image_files = 'images/train/sign*.png'
-if len(glob.glob(image_files)) == 0:
-    helper.extract_images()
+# Dataset ('test', 'train', 'valid')
+dataset = 'train'
 
-# Load images and save in X matrix. Convert to numpy array.
-X = []
-for file in glob.glob(image_files):
-    img = cv2.imread(file)
-    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-    X.append(img)
-X = np.array(X)
-
-# Load labels
-y = pd.read_csv('train_labels.csv', header=None).values
+# Load images and labels
+X, y = helper.load_data(dataset)
 
 # Select subsample for faster debugging
 sample_fraction = 1

@@ -1,8 +1,4 @@
-import pandas as pd
-import glob
-import cv2
 import json
-import numpy as np
 import keras
 from keras.models import model_from_json
 from keras.utils import np_utils
@@ -10,23 +6,11 @@ from keras.optimizers import Adam
 import config
 import helper
 
+# Dataset ('test', 'train', 'valid')
+dataset = 'test'
 
-# Convert pickled data to human readable images
-image_files = 'images/test/sign*.png'
-if len(glob.glob(image_files)) == 0:
-    helper.extract_images()
-
-# Load images and save in X numpy array
-X = []
-for file in glob.glob(image_files):
-    img = cv2.imread(file)
-    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-    X.append(img)
-X = np.array(X)
-
-# Load labels
-y = pd.read_csv('test_labels.csv', header=None).values
-y_cat = np_utils.to_categorical(y, config.__nb_classes__)
+# Load images and labels
+X, y = helper.load_data(dataset)
 
 # Load model
 model_file = config.__model_file__
@@ -42,6 +26,7 @@ model.load_weights(config.__model_weights__)
 
 # Evaluate model performace
 print('Evaluating performance on %d samples' % X.shape[0])
+y_cat = np_utils.to_categorical(y, config.__nb_classes__)
 score = model.evaluate(X, y_cat, verbose=0)
 names = model.metrics_names
 for i in range(len(score)):

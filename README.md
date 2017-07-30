@@ -8,7 +8,7 @@ Inference using existing pre-trained model
 
 Train new model
 
-    python training.py
+    python train.py
 
 ## Prerequisites
 

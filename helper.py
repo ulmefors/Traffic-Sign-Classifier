@@ -6,6 +6,8 @@ from urllib.request import urlretrieve
 from tqdm import tqdm
 import config
 import zipfile
+import glob
+import numpy as np
 
 
 class DLProgress(tqdm):
@@ -15,6 +17,28 @@ class DLProgress(tqdm):
         self.total = total_size
         self.update((block_num - self.last_block) * block_size)
         self.last_block = block_num
+
+
+def load_data(dataset):
+    # Convert pickled data to human readable images
+    image_files = os.path.join(config.__images_dir__, dataset, 'sign*.png')
+    if len(glob.glob(image_files)) == 0:
+        extract_images()
+
+    # Load images and save in X matrix. Convert to numpy array.
+    X = []
+    for file in glob.glob(image_files):
+        img = cv2.imread(file)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        X.append(img)
+    X = np.array(X)
+
+    # Load labels
+    labels_file = os.path.join(config.__labels_dir__, '%s.csv' % dataset)
+    y = pd.read_csv(labels_file, header=None).values
+
+    # Return images and labels
+    return X, y
 
 
 def maybe_download_traffic_signs():
@@ -45,19 +69,23 @@ def extract_images():
     # Download data
     maybe_download_traffic_signs()
 
-    for dataset in ['train', 'valid', 'test']:
+    for dataset in config.__datasets__:
         # Load Data
-        with open('data/%s.p' % dataset, 'rb') as f:
+        with open(os.path.join(config.__data_dir__, '%s.p' % dataset), 'rb') as f:
             data = pickle.load(f)
         X = data['features']
         y = data['labels']
 
         # Save to CSV. No label for columns or rows
         y = pd.DataFrame(y)
-        y.to_csv('%s_labels.csv' % dataset, header=False, index=False)
+        labels_dir = config.__labels_dir__
+        if not os.path.exists(labels_dir):
+            os.makedirs(labels_dir)
+        labels_file = os.path.join(labels_dir, '%s.csv' % dataset)
+        y.to_csv(labels_file, header=False, index=False)
 
         # Create image directory
-        directory = 'images/%s' % dataset
+        directory = os.path.join(config.__images_dir__, '%s' % dataset)
         if not os.path.exists(directory):
             os.makedirs(directory)
 
