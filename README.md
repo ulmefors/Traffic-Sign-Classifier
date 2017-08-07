@@ -33,6 +33,7 @@ Version numbers represent tested releases. Running Python 3.5 facilitates OpenCV
     conda install -c menpo opencv
 
     // Visualization
-    apt-get install graphviz _or_ brew install graphviz
+    macOS: brew install graphviz
+    Ubuntu: apt install graphviz
     pip install h5py graphviz pydot
     
