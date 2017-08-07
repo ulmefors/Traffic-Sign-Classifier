@@ -7,6 +7,7 @@ from keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
 import config
 import helper
+import time
 
 
 # Dataset ('test', 'train', 'valid')
@@ -56,12 +57,17 @@ model.summary()
 
 model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
 
+start_time = time.time()
 history = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs,
                     verbose=2, validation_data=(X_val, y_val))
+training_time = time.time() - start_time
 
 # Print metrics of validation set
+print('*** Training Complete ***')
+print('Elapsed time: %.1f seconds' % training_time)
 score = model.evaluate(X_val, y_val, verbose=0)
 names = model.metrics_names
+print('*** Metrics ***')
 for i in range(len(score)):
     print('%s: %.3f' % (names[i], score[i]))
 
