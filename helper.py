@@ -25,9 +25,13 @@ def load_data(dataset):
     if len(glob.glob(image_files)) == 0:
         extract_images()
 
+    # Sort file names in alphabetical order to line up with labels
+    files = glob.glob(image_files)
+    files.sort()
+
     # Load images and save in X matrix. Convert to numpy array.
     X = []
-    for file in glob.glob(image_files):
+    for file in files:
         img = cv2.imread(file)
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         X.append(img)
