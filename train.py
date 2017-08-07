@@ -30,7 +30,7 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, random_state=0, test_siz
 shape = X.shape[1:]
 nb_classes = config.__nb_classes__
 batch_size = 32
-nb_epoch = 10
+epochs = 10
 
 # Class number to classification columns (categorical to dummy variables)
 y_train = np_utils.to_categorical(y_train, nb_classes)
@@ -39,13 +39,13 @@ y_val = np_utils.to_categorical(y_val, nb_classes)
 # Model of Convolutional Neural Network
 model = Sequential()
 model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=shape, output_shape=shape))
-model.add(Conv2D(3, 1, 1, activation='elu'))
-model.add(Conv2D(16, 5, 5, subsample=(2, 2), activation='elu'))
-model.add(Conv2D(24, 3, 3, activation='elu'))
-model.add(Conv2D(32, 3, 3, activation='elu'))
-model.add(Conv2D(48, 3, 3, activation='elu'))
-model.add(Conv2D(64, 3, 3, activation='elu'))
-model.add(Conv2D(128, 3, 3, activation='elu'))
+model.add(Conv2D(3, (1, 1), activation='elu'))
+model.add(Conv2D(16, (5, 5), subsample=(2, 2), activation='elu'))
+model.add(Conv2D(24, (3, 3), activation='elu'))
+model.add(Conv2D(32, (3, 3), activation='elu'))
+model.add(Conv2D(48, (3, 3), activation='elu'))
+model.add(Conv2D(64, (3, 3), activation='elu'))
+model.add(Conv2D(128, (3, 3), activation='elu'))
 model.add(Flatten())
 model.add(Dropout(0.3))
 model.add(Dense(128, activation='elu'))
@@ -56,7 +56,7 @@ model.summary()
 
 model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
 
-history = model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=nb_epoch,
+history = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs,
                     verbose=2, validation_data=(X_val, y_val))
 
 # Print metrics of validation set
