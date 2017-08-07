@@ -4,7 +4,7 @@ from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten, Lambda, Dropout
 from keras.optimizers import Adam
-from keras.utils.visualize_util import plot
+from keras.utils.vis_utils import plot_model
 import config
 import helper
 
@@ -69,4 +69,4 @@ for i in range(len(score)):
 model.save_weights(config.__model_weights__, overwrite=True)
 with open(config.__model_file__, 'w') as outfile:
     json.dump(model.to_json(), outfile)
-plot(model, config.__model_diagram__, show_shapes=True)
+plot_model(model, config.__model_diagram__, show_shapes=True)
