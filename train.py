@@ -30,8 +30,8 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, random_state=0, test_siz
 # Hyperparams
 shape = X.shape[1:]
 nb_classes = config.__nb_classes__
-batch_size = 32
-epochs = 10
+batch_size = 512
+epochs = 30
 
 # Class number to classification columns (categorical to dummy variables)
 y_train = np_utils.to_categorical(y_train, nb_classes)
@@ -48,9 +48,9 @@ model.add(Conv2D(48, (3, 3), activation='elu'))
 model.add(Conv2D(64, (3, 3), activation='elu'))
 model.add(Conv2D(128, (3, 3), activation='elu'))
 model.add(Flatten())
-model.add(Dropout(0.3))
+model.add(Dropout(0.4))
 model.add(Dense(128, activation='elu'))
-model.add(Dropout(0.3))
+model.add(Dropout(0.4))
 model.add(Dense(nb_classes, activation='softmax'))
 
 model.summary()
@@ -69,7 +69,7 @@ score = model.evaluate(X_val, y_val, verbose=0)
 names = model.metrics_names
 print('*** Metrics ***')
 for i in range(len(score)):
-    print('%s: %.3f' % (names[i], score[i]))
+    print('%s: %.4f' % (names[i], score[i]))
 
 # Save model
 model.save_weights(config.__model_weights__, overwrite=True)
