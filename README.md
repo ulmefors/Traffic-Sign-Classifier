@@ -39,23 +39,30 @@ Version numbers below are of confirmed working releases for this project.
     scipy 0.19.1
     numpy 1.13.1
 
-## Installation using Anaconda on macOS and Ubuntu 
+## Installation using Anaconda
 It is recommended to use a virtual environment so that python packages can be easily reverted.
-Instructions for installation using Anaconda will assist in preparing your environment for this project. 
+Instructions for installation using Anaconda will assist in preparing your environment for this project.
 
-1. Install [Anaconda Python 3](https://www.continuum.io/downloads)
-2. Training and inference
+0. Install [Anaconda Python 3](https://www.continuum.io/downloads)
+0. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
+0. Training and inference
 ```
     conda create -n traffic_signs python=3.5
-    source activate traffic_signs
-    pip install keras tensorflow sklearn pandas tqdm scipy numpy
-    conda install -c menpo opencv
-```
 
-3. Optional: Save model diagram
+    macOS/Ubuntu:
+    source activate traffic_signs
+    pip install keras tensorflow sklearn pandas tqdm scipy numpy h5py
+    conda install -c menpo opencv
+
+    Windows:
+    activate traffic_signs
+    conda install scipy numpy tensorflow scikit-learn pandas tqdm h5py
+    pip install keras
+    conda install -c menpo opencv3
+```
+0. Optional: Save model diagram (Ubuntu, macOS)
 ```
     macOS: brew install graphviz
     Ubuntu: apt install graphviz
-    pip install h5py graphviz pydot
+    pip install graphviz pydot
 ```
-    
