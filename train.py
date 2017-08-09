@@ -10,6 +10,9 @@ import helper
 import time
 
 
+# Overwrite model
+overwrite_model = False
+
 # Dataset ('test', 'train', 'valid')
 dataset = 'train'
 
@@ -71,8 +74,9 @@ print('*** Metrics ***')
 for i in range(len(score)):
     print('%s: %.4f' % (names[i], score[i]))
 
-# Save model
-model.save_weights(config.__model_weights__, overwrite=True)
-with open(config.__model_file__, 'w') as outfile:
-    json.dump(model.to_json(), outfile)
-plot_model(model, config.__model_diagram__, show_shapes=True)
+# Overwrite saved model
+if overwrite_model:
+    model.save_weights(config.__model_weights__, overwrite=True)
+    with open(config.__model_file__, 'w') as outfile:
+        json.dump(model.to_json(), outfile)
+    plot_model(model, config.__model_diagram__, show_shapes=True)
