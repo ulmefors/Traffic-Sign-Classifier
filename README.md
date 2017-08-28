@@ -43,16 +43,17 @@ Version numbers below are of confirmed working releases for this project.
 It is recommended to use a virtual environment so that python packages can be easily reverted.
 Instructions for installation using Anaconda will assist in preparing your environment for this project.
 
-0. Install [Anaconda Python 3](https://www.continuum.io/downloads)
-0. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
-0. Training and inference
+1. Install [Anaconda Python 3](https://www.continuum.io/downloads)
+2. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
+3. Training and inference. Run in terminal (macOS/Ubuntu) or command prompt (Windows)
+
 ```
     conda create -n traffic_signs python=3.5
 
     macOS/Ubuntu:
     source activate traffic_signs
     pip install keras tensorflow sklearn pandas tqdm scipy numpy h5py
-    conda install -c menpo opencv
+    conda install -c menpo opencv3
 
     Windows:
     activate traffic_signs
@@ -60,7 +61,7 @@ Instructions for installation using Anaconda will assist in preparing your envir
     pip install keras
     conda install -c menpo opencv3
 ```
-0. Optional: Save model diagram (Ubuntu, macOS)
+4. Optional: Save model diagram (Ubuntu, macOS)
 ```
     macOS: brew install graphviz
     Ubuntu: apt install graphviz
