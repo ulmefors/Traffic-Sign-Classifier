@@ -1,5 +1,4 @@
 # Traffic sign classifier
-
 Classify Traffic Signs from [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset).
 Each image is 32x32 pixels and belongs to one of 43 classes. Training and inference are achieved using Keras with either Tensorflow or Theano as backend.
 The dataset (124 MB) is downloaded automatically and consists of three parts: `train, valid, test`.
@@ -11,8 +10,8 @@ The dataset (124 MB) is downloaded automatically and consists of three parts: `t
 ![987](examples/sign_00987.png)
 
 ## Run
-
-Consider running the inference script to make sure that prerequisites are correctly installed. Accuracy should be around 96% on the test set.
+You can start by running the inference script to make sure that prerequisites are correctly installed. Accuracy should be around 96% on the test set.
+Commands should be run in Terminal (macOS/Linux) or Command Prompt (Windows) unless otherwise specified.
 
 ### Inference
 Perform inference using existing pre-trained model.
@@ -49,13 +48,12 @@ Version numbers below are of confirmed working releases for this project.
     numpy 1.13.1
 
 ## Installation using Anaconda
-It is recommended to use a virtual environment so that python packages can be easily reverted.
-Instructions for installation using Anaconda will assist in preparing your environment for this project.
+It is recommended to use a virtual environment so that python packages can be easily managed.
+Instructions for installation using Anaconda will make it easier to prepare your environment for this project.
 
 1. Install [Anaconda Python 3](https://www.continuum.io/downloads)
 2. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
-3. Training and inference. Run in terminal (macOS/Ubuntu) or command prompt (Windows)
-
+3. Training and inference.
 ```
     conda create -n traffic_signs python=3.5
 
