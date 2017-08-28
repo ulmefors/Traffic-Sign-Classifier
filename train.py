@@ -1,3 +1,4 @@
+import os
 import json
 from sklearn.model_selection import train_test_split
 from keras.utils import np_utils
@@ -5,9 +6,11 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten, Lambda, Dropout
 from keras.optimizers import Adam
 from keras.utils.vis_utils import plot_model
+from keras.callbacks import TensorBoard
 import config
 import helper
 import time
+import datetime
 
 
 # Overwrite model
@@ -56,16 +59,28 @@ model.add(Dense(128, activation='elu'))
 model.add(Dropout(0.4))
 model.add(Dense(nb_classes, activation='softmax'))
 
+# Print model summary
 model.summary()
 
+# Compile model
 model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
 
+# Start training train
 start_time = time.time()
+
+# Configure Tensorboard log
+log_dir = os.path.join(config.__tensorboard_log_dir, datetime.datetime.fromtimestamp(start_time).strftime('%c'))
+tbCallBack = TensorBoard(log_dir=log_dir, histogram_freq=0, write_graph=True, write_images=True)
+
+# Train model
 history = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs,
-                    verbose=2, validation_data=(X_val, y_val))
+                    verbose=2, validation_data=(X_val, y_val), callbacks=[tbCallBack])
+
+# Training duration
 training_time = time.time() - start_time
 
 # Print metrics of validation set
+print('')
 print('*** Training Complete ***')
 print('Elapsed time: %.1f seconds' % training_time)
 score = model.evaluate(X_val, y_val, verbose=0)

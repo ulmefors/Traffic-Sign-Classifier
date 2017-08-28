@@ -14,6 +14,7 @@ __datasets__ = ['train', 'valid', 'test']
 __data_dir__ = 'data'
 __labels_dir__ = 'labels'
 __images_dir__ = 'images'
+__tensorboard_log_dir = 'runs'
 
 # File Names
 __data_file__ = 'data.zip'

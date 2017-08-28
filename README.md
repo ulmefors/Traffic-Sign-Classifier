@@ -23,6 +23,15 @@ Perform inference using existing pre-trained model.
 Train new model from scratch.
 
     python train.py
+    
+### Tensorboard visualization
+In project root directory, run
+
+    tensorboard --logdir=runs
+    
+In browser, navigate to
+    
+    http://localhost:6006
 
 ## Prerequisites
 
