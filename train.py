@@ -69,7 +69,8 @@ model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accur
 start_time = time.time()
 
 # Configure Tensorboard log
-log_dir = os.path.join(config.__tensorboard_log_dir, datetime.datetime.fromtimestamp(start_time).strftime('%c'))
+log_dir = os.path.join(config.__tensorboard_log_dir,
+                       datetime.datetime.fromtimestamp(start_time).strftime('%y-%m-%d_%H-%M'))
 tbCallBack = TensorBoard(log_dir=log_dir, histogram_freq=0, write_graph=True, write_images=True)
 
 # Train model
