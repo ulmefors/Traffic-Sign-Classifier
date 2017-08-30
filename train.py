@@ -36,6 +36,7 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, random_state=0, test_siz
 # Hyperparams
 shape = X.shape[1:]
 nb_classes = config.__nb_classes__
+learning_rate = 0.001
 batch_size = 512
 epochs = 30
 
@@ -63,7 +64,7 @@ model.add(Dense(nb_classes, activation='softmax'))
 model.summary()
 
 # Compile model
-model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=Adam(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Start training train
 start_time = time.time()
