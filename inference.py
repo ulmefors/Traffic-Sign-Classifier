@@ -26,8 +26,8 @@ model.load_weights(config.__model_weights__)
 
 # Evaluate model performace
 print('Evaluating performance on %d samples' % X.shape[0])
-y_cat = np_utils.to_categorical(y, config.__nb_classes__)
-score = model.evaluate(X, y_cat, verbose=0)
+y_cat = np_utils.to_categorical(y, config.__num_classes__)
+scores = model.evaluate(X, y_cat, verbose=0)
 names = model.metrics_names
-for i in range(len(score)):
-    print('%s: %.3f' % (names[i], score[i]))
+for name, score in zip(names, scores):
+    print('%s: \t%.4f' % (name, score))

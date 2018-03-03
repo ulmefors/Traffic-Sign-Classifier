@@ -1,4 +1,4 @@
-__nb_classes__ = 43
+__num_classes__ = 43
 
 # Model Files
 __model_file__ = 'model.json'

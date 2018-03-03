@@ -94,8 +94,8 @@ def extract_images():
             os.makedirs(directory)
 
         # Load images and save as picture files
-        nb_images = X.shape[0]
-        for i in range(nb_images):
+        num_images = X.shape[0]
+        for i in range(num_images):
             file = directory + '/sign_%05d.png' % i
             img = X[i]
             img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
