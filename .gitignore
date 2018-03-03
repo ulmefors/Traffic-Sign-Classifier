@@ -3,4 +3,4 @@ __pycache__
 labels
 data
 images
-runs
+logdir

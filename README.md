@@ -10,7 +10,7 @@ The dataset (124 MB) is downloaded automatically and consists of three parts: `t
 ![987](examples/sign_00987.png)
 
 ## Run
-You can start by running the inference script to make sure that prerequisites are correctly installed. Accuracy should be around 96% on the test set.
+You can start by running the inference script to make sure that prerequisites are correctly installed.
 Commands should be run in Terminal (macOS/Linux) or Command Prompt (Windows) unless otherwise specified.
 
 ### Inference
@@ -26,7 +26,7 @@ Train new model from scratch.
 ### Tensorboard visualization
 In project root directory, run
 
-    tensorboard --logdir=runs
+    tensorboard --logdir=logdir
     
 In browser, navigate to
     
@@ -34,17 +34,17 @@ In browser, navigate to
 
 ## Prerequisites
 
-Python 3.5 is recommended since OpenCV installation is straightforward with this release whereas somewhat trickier on Python 3.6.
 Version numbers below are of confirmed working releases for this project.
 
-    python 3.5.4
+    python 3.6.4
     keras 2.1.4    
-    numpy 1.11.3
-    opencv 3.2.0
-    pandas 0.21.1
+    numpy 1.14.1
+    opencv 3.1.0
+    pandas 0.22.0
     scikit-learn 0.19.1
     scipy 1.0.0
-    tensorflow 1.3.0
+    tensorflow 1.5.0
+    tensorflow-tensorboard 1.5.1
     tqdm 4.19.5
     
 
@@ -56,7 +56,7 @@ Instructions for installation using Anaconda will make it easier to prepare your
 2. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
 3. Training and inference.
 ```
-    conda create -n traffic_signs python=3.5
+    conda create -n traffic_signs
 
     macOS/Ubuntu:
     source activate traffic_signs
