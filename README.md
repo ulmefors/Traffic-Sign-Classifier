@@ -37,15 +37,16 @@ In browser, navigate to
 Python 3.5 is recommended since OpenCV installation is straightforward with this release whereas somewhat trickier on Python 3.6.
 Version numbers below are of confirmed working releases for this project.
 
-    python 3.5.3
-    pandas 0.20.3
-    opencv 3.1.0
-    keras 2.0.6
-    tensorflow 1.2.1
-    sklearn 0.18.2
-    tqdm 4.15.0
-    scipy 0.19.1
-    numpy 1.13.1
+    python 3.5.4
+    keras 2.1.4    
+    numpy 1.11.3
+    opencv 3.2.0
+    pandas 0.21.1
+    scikit-learn 0.19.1
+    scipy 1.0.0
+    tensorflow 1.3.0
+    tqdm 4.19.5
+    
 
 ## Installation using Anaconda
 It is recommended to use a virtual environment so that python packages can be easily managed.
@@ -59,7 +60,7 @@ Instructions for installation using Anaconda will make it easier to prepare your
 
     macOS/Ubuntu:
     source activate traffic_signs
-    pip install keras tensorflow sklearn pandas tqdm scipy numpy h5py
+    conda install keras scikit-learn pandas tqdm
     conda install -c menpo opencv3
 
     Windows:
@@ -72,5 +73,5 @@ Instructions for installation using Anaconda will make it easier to prepare your
 ```
     macOS: brew install graphviz
     Ubuntu: apt install graphviz
-    pip install graphviz pydot
+    conda install graphviz pydot
 ```
