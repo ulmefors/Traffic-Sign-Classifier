@@ -55,16 +55,15 @@ Instructions for installation using Anaconda will make it easier to prepare your
 1. Install [Anaconda Python 3](https://www.continuum.io/downloads)
 2. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
 3. Training and inference.
-    
-    
+```
     conda create -n traffic_signs
     <source> activate traffic_signs    
     conda install keras scikit-learn pandas tqdm
     conda install -c menpo opencv3
-
+```
 Optional: Save model diagram (Ubuntu, macOS)
-
+```
     macOS: brew install graphviz
     Ubuntu: apt install graphviz
     conda install graphviz pydot
-
+```
