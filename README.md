@@ -1,7 +1,7 @@
 # Traffic sign classifier
-Classify Traffic Signs from [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset).
+Classify Traffic Signs from [German Traffic Sign Data set](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset).
 Each image is 32x32 pixels and belongs to one of 43 classes. Training and inference are achieved using Keras with either Tensorflow or Theano as backend.
-The dataset (124 MB) is downloaded automatically and consists of three parts: `train, valid, test`.
+The data set (124 MB) is downloaded automatically and consists of three parts: `train, valid, test`.
 
 ![70](examples/sign_00070.png)
 ![178](examples/sign_00178.png)
@@ -36,18 +36,17 @@ In browser, navigate to
 
 Version numbers below are of confirmed working releases for this project.
 
-    python 3.6.4
-    keras 2.1.4    
-    numpy 1.14.1
-    opencv 3.1.0
-    pandas 0.22.0
+    python 3.6.5
+    keras 2.2.2   
+    numpy 1.14.3
+    pandas 0.23.4
+    pillow 5.1.0
     scikit-learn 0.19.1
-    scipy 1.0.0
-    tensorflow 1.5.0
-    tensorflow-tensorboard 1.5.1
-    tqdm 4.19.5
+    scipy 1.1.0
+    tensorflow 1.10.1
+    tensorflow-tensorboard 1.10.0
+    tqdm 4.26.0
     
-
 ## Installation using Anaconda
 It is recommended to use a virtual environment so that python packages can be easily managed.
 Instructions for installation using Anaconda will make it easier to prepare your environment for this project.
@@ -57,13 +56,13 @@ Instructions for installation using Anaconda will make it easier to prepare your
 3. Training and inference.
 ```
     conda create -n traffic_signs
-    <source> activate traffic_signs    
-    conda install keras scikit-learn pandas tqdm
-    conda install -c menpo opencv3
+    Windows: activate traffic_signs
+    Mac/Linux: source activate traffic_signs    
+    pip install keras scikit-learn tensorflow pandas tqdm pillow
 ```
 Optional: Save model diagram (Ubuntu, macOS)
 ```
     macOS: brew install graphviz
     Ubuntu: apt install graphviz
-    conda install graphviz pydot
+    pip install graphviz pydot
 ```
