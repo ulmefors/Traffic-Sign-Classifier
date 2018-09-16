@@ -53,14 +53,15 @@ Instructions for installation using Anaconda will make it easier to prepare your
 
 1. Install [Anaconda Python 3](https://www.continuum.io/downloads)
 2. Add Anaconda directories to PATH as necessary (e.g. for Windows: Anaconda3, Anaconda3\\Scripts)
-3. Training and inference.
-```
-    conda create -n traffic_signs
-    Windows: activate traffic_signs
-    Mac/Linux: source activate traffic_signs    
-    pip install keras scikit-learn tensorflow pandas tqdm pillow
-```
-Optional: Save model diagram (Ubuntu, macOS)
+3. Create environment `conda create -n traffic_signs`
+4. Activate environment
+    * Windows: `activate traffic_signs`
+    * Mac/Linux: `source activate traffic_signs`
+5. Install packages
+ 
+    `pip install keras scikit-learn tensorflow pandas tqdm pillow` 
+
+6. [Optional] Save model diagram (Ubuntu, macOS)
 ```
     macOS: brew install graphviz
     Ubuntu: apt install graphviz
